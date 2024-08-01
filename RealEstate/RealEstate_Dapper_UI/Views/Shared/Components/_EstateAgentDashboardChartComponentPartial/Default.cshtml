@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+
+    <div style="display: flex; justify-content: space-between;">
+        <canvas id="myChart" style="width:100%;max-width:500px"></canvas>
+        <canvas id="myChart1" style="width:100%;max-width:500px"></canvas>
+    </div>
+
+    <script>
+        var xValues = [];
+        var yValues = [];
+        @foreach (var item in Model)
+        {
+            <text>
+                xValues.push("@Html.Raw(item.City)");
+            yValues.push(@item.CityCount);
+            </text>
+        }
+
+                var barColors = [
+            "rgba(173,216,230,1.0)",
+            "rgba(173,216,230,0.8)",
+            "rgba(173,216,230,0.6)",
+            "rgba(173,216,230,0.4)",
+            "rgba(173,216,230,0.2)"
+        ];
+
+        new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                }
+            }
+        });
+    </script>
+
+    <script>
+        var xValues1 = [];
+        var yValues1 = [];
+        @foreach (var item in Model)
+        {
+            <text>
+                xValues1.push("@Html.Raw(item.City)");
+            yValues1.push(@item.CityCount);
+            </text>
+        }
+
+                        var barColors = [
+            "rgba(173,216,230,1.0)",
+            "rgba(173,216,230,0.8)",
+            "rgba(173,216,230,0.6)",
+            "rgba(173,216,230,0.4)",
+            "rgba(173,216,230,0.2)"
+        ];
+
+        new Chart("myChart1", {
+            type: "bar",
+            data: {
+                labels: xValues1,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues1
+                }]
+            },
+            options: {
+                legend: { display: false },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
